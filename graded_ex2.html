@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <style>
+
+        body, html {
+            background-color: rgb(226, 152, 126);
+            margin: 0px; 
+            padding: 0px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .header h1 {
+            height: 50px;   
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .header img {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            height: 40px        
+        }
+
+        #button-back {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 8px 24px;
+            border-radius: 20px;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .cart-page {
+            background: #ecedef;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            left: 50%;
+            top: 60%;
+            /* width: 200px; 
+            height: 100px; */
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .product {
+            background: #ecedef;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            left: 50%;
+            top: 60%;
+            /* width: 200px; 
+            height: 100px; */
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .product-detailed {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 400px;
+            background: #ecedef;
+            padding: 40px;
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            transform: translate(-50%,-50%);
+            text-transform: uppercase;
+            border-radius: 20px;
+        }
+
+        .product-detailed h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .product-name-fp {
+            font-size: 20px;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+
+        .product-detailed p {
+            font-size: 13px;
+            color: #bbb;
+        }
+
+        .product-picture {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: .6s linear;
+        }
+
+        .product-picture-fp {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: .6s linear;
+        }
+
+        .product-description {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 26px;
+            color: cadetblue;
+        }
+
+        .product-price-fp {
+            color: cadetblue;
+            font-size: 20px;
+        }
+
+        #add-shop-cart {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 5%;
+        }
+
+        #go-shop-cart {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 5%;
+        }
+
+        #button-purchase {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 5%;
+        }
+
+        #button-remove {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 5%;
+        }
+
+        .cart-quantity-input-value {
+            margin-left: auto;
+            color: cadetblue;
+            text-decoration: none;
+            border: 2px solid;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            margin: 5%;
+            width: 20%;
+        }
+
+        .cart {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 800px;
+            background: #ecedef;
+            padding: 40px;
+            padding-top: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            text-transform: uppercase;
+            border-radius: 20px;
+        }
+
+        .section-header {
+            color: cadetblue;
+            font-size: 40px;
+            text-align: center;        
+        }
+
+        .cart-row {
+            display: flex;
+            width: 100px;
+            align-items: center;
+
+        }
+
+        .cart-column {
+            display: flex;
+            align-items: center;
+            margin-right: 1.5em;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            width: 600px;
+        }
+
+        .counterStyle {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            height: 40px;
+            font-style: Helvetica;
+            color: aquamarine;
+        }
+
+        #target {
+            height: 1000px;
+            background-color: cadetblue;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-picture img {
+            display: block;
+            max-width:auto;
+            max-height:auto;
+            width: auto;
+            height: auto;  
+        }
+
+        img {
+            display: block;
+            width: auto;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body onload = "product()">
+    
+    <div class="header">
+        <h1>Welcome to my Online Store!</h1>
+        <img src="shoppingcarticon.png" onclick="shoppingCartPage()">
+    </div>
+
+    <div id = "target"></div>
+
+
+    <script>
+
+        /* 
+        Couldn't fetch data from JSON even while using "require". 
+        Searched the answer as to why, did I need to install something because the "require" is not supported by the browser?
+        */
+       
+        const data = [
+            {
+                name: "Christmas Gingerbread House",
+                description: "More product information\nRavensburger 3D puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/360/11237.webp",
+                price: 86,
+                quantity: " ",
+            },
+            {
+                name: "Buckingham Palace",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12529.jpg",
+                price: 80,
+                quantity: " ",
+            },
+            {
+                name: "Empire State Building",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12553.jpg",
+                price: 87,
+                quantity: " ",
+            },
+            {
+                name: "Big Ben",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12588.jpg",
+                price: 85,
+                quantity: " ",
+            },
+            {
+                name: "Eiffel Tower",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12556.jpg",
+                price: 80,
+                quantity: " ",
+            },
+            {
+                name: "Arc de Triomphe",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12514.jpg",
+                price: 95,
+                quantity: " ",
+            },
+            {
+                name: "Leaning Tower of Pisa",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12515.jpg",
+                price: 95,
+                quantity: " ",
+            },
+            {
+                name: "Neuschwanstein",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12573.jpg",
+                price: 105,
+                quantity: " ",
+            },
+            {
+                name: "Tower Bridge of London",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12559.jpg",
+                price: 79,
+                quantity: " ",
+            },
+            {
+                name: "London Bus",
+                description: "More product information\nRavensburger 3D Puzzles. Immerse yourself in the third dimension with Ravensburger's unique 3D puzzles! With Easy Click technology, the plastic puzzle pieces fit together perfectly. You can create stunning 3D objects with individually shaped and shaped pieces, and no glue is needed at all! Build the world’s most famous buildings from the Eiffel Tower to the Empire State Building, or try one of our ready-made 3D models with a wide selection of different pieces. Fun 3D construction!\nContents\n3D Puzzle 216 pieces",
+                image: "https://cdn.ravensburger.de/images/produktseiten/1024/12534.jpg",
+                price: 80,
+                quantity: " ",
+            },
+        ]
+
+        /* 
+        One idea was to add the product with the "add to cart" button in the array. Thanks to it, we could create a new row
+        in the shopping cart view, showcasing the products in the array (that were added to the cart).
+        */
+        let productArray = [];
+
+        function addProduct(product) {
+            productArray.push(product);
+        }
+
+
+
+        // This partially works: removes what's in the cart, but the updateTotal() doesn't work (can try with hard-coded products).
+        function purchaseClicked() {
+            alert("Thank you for your purchase");
+            var cartItems = document.getElementsByClassName("cart-single-product")[0];
+            while (cartItems.hasChildNodes()) {
+                cartItems.removeChild(cartItems.firstChild)
+            }
+            updateCartTotal() // --> couldn't make the function work.
+        }
+
+   
+        // I actually managed to make this removeCartProduct() function work when products are hardcoded in the shoppingCartPage html.
+        function removeCartProduct() {
+            var buttonClicked = event.target;
+            buttonClicked.parentElement.remove();
+            updateCartTotal() // --> couldn't make the function work.
+        }
+
+
+        // This was one idea to update the subtotal and total in the cart.
+        // Another idea was to do "onclick="subTotal()" in the input section (see further down) 
+        function quantityChanged(event) {
+            let input = event.target
+            if (isNaN(input.value) || input.value <= 0) {
+            input.value = 1
+        }
+            updateSubTotal()
+            updateCartTotal() // --> couldn't make the function work.
+        }
+
+        /*
+        The idea here was to add the product to an array when clicking the "purchase" button in the single 
+        product view (that has onclick="addProduct()", adding the product to the array), and then go through 
+        this array in the addProductToCart() function, and then add a row for each product that is in the array. */
+        function addProductToCart(product) {
+            let newCartRow = document.createElement("div");
+            newCartRow.classList.add("cart-items cart-column");
+
+            for(let i = 0; productArray.length; i++) {
+                let cart = document.getElementsByClassName("cart");
+                let cartProductName = cart.getElementsByClassName("cart-single-product");
+                newCartRow.innerHTML = `
+                <div class="cart-items cart-column">
+                        <span class="cart-item cart-column cart-row">${product.name}</span>
+                        <span class="cart-price cart-column cart-row">${product.price}</span>
+                        <input class="cart-quantity-input cart-column cart-row" type="number" value="1" min="0"></input>
+                        <span class="cart-subtotal cart-column cart-row"></span>
+                        <button id="button-remove" class="cart-remove cart-column cart-row" type="button" onclick="removeCartProduct()">REMOVE</button>
+                </div>
+                `
+                cart.appendChild(newCartRow);
+            }
+        }
+
+        // This partially works
+        function shoppingCartPage() {
+            let shoppingCart = document.getElementById("target");
+            shoppingCart.innerHTML = " ";
+
+                    let cart = document.createElement("div");
+                    cart.className = "cart-page";
+                    cart.innerHTML = `
+                    <button id="button-back" onclick="product()">Back</button>
+                        <div class="cart">
+                            <h2 class="section-header">CART</h2>
+                                <div class="cart-row cart-column">
+                                    <span class="cart-item cart-header cart-column cart-row">PRODUCT</span>
+                                    <span class="cart-price cart-header cart-column cart-row">PRICE</span>
+                                    <span class="cart-quantity cart-header cart-column cart-row">QUANTITY</span>
+                                    <span class="cart-subtotal cart-header cart-column cart-row">SUB-TOTAL</span>
+                                    <span class="cart-remove cart-header cart-column cart-row"></span>
+                                </div>
+                            <div class="cart-single-product">
+                                
+                            </div>
+                                <div class="cart-total">
+                                    <strong class="cart-total-title">Total</strong>
+                                    <span class="cart-total-price">$0</span>
+                                </div>
+                            <button id="button-purchase" type="button" onclick=purchaseClicked()>PURCHASE</button>
+                        </div>
+                    `
+                    shoppingCart.appendChild(cart);
+        }
+
+          
+        // This works
+        function showDetailProduct(product) {
+            let singleProduct = document.getElementById("target");
+            singleProduct.innerHTML = " ";
+
+            for(let i = 0; i < data.length; i++) {
+                if(data[i] == product) {
+                    let productView = document.createElement("div");
+                    productView.className = "product";
+                    productView.innerHTML = `
+                    <button id="button-back" onclick="product()">Back</button>
+                    <div class="product-detailed">
+                        <div>
+                            <h1 class="product-name">${product.name} </h1>
+                            <img class="product-picture" src="${product.image}"/>
+                            <p class="product-description">Description: ${product.description} </p>
+                            <div class="product-price">Price: $ ${product.price} </div>
+                        </div> 
+                        <button id="add-shop-cart" onclick="addProduct(product)">Add to shopping cart</button>
+                        <button id="go-shop-cart" onclick="shoppingCartPage()">Go to shopping cart</button>
+                    </div>
+                    `
+                    singleProduct.appendChild(productView);
+                }
+            }
+        }
+
+        // This works
+        function product() {
+                    let page = document.getElementById("target");
+                    page.innerHTML = " "; // to delete previous content
+
+                    for(let i = 0; i < data.length; i++) {
+                        let productElement = document.createElement("div");
+                        productElement.className = "product";
+                        productElement.innerHTML = `
+                        <div class="product">
+                            <h1 class="product-name-fp">${data[i].name} </h1>
+                            <img class="product-picture-fp" src="${data[i].image}"/>
+                            <div class="product-price-fp">Price: $ ${data[i].price} </div>
+                        </div>
+                        `
+                        productElement.onclick = () => showDetailProduct(data[i]);
+                        page.appendChild(productElement);
+                    }
+                }
+
+        /*
+        In this updateSubTotal() function, I'm trying to get the "cart-price-value" and "cart-quantity-input-value" values and
+        add them together to create the subtotal to display on the "cart-subtotal-value" span of the shoppingCartPage html
+        but it doesn't find the classes "cart-price-value" and "cart-quantity-input-value" for some reason.
+        After that, the idea is to update the subtotal with the quantityChanged() function that is made so
+        that when the input value of "cart-quantity-input" changes, then it updates the subtotal; and for that to work,
+        I added an eventListen (=listens to when the input changes) inside shoppingCartPage() as this is where
+        the subtotal is displayed, but it doesn't work...
+        I tried two types of function, but couldn't manage to make any of them work: updateSubTotal() & subTotal() */
+        
+        function subTotal(){
+            let val1 = parseInt(document.querySelector(".cart-price-value").value);
+            let val2 = parseInt(document.querySelector(".cart-quantity-input-value").value);
+
+            let result = parseInt(val1) * parseInt(val2);
+
+            console.log(result);
+            document.querySelector(".cart-subtotal-value").innerText = result;
+        }
+        
+        function updateSubTotal() {
+            let basketProducts = document.getElementsByClassName("cart-single-product")[0];
+            let cartRows = basketProducts.getElementsByClassName("cart-items");
+            let subTotal = 0;
+            for (let i = 0; cartRows.length; i++) {
+                let cartRow = cartRows[i];
+                let elementPrice = cartRow.getElementsByClassName("cart-price-value")[0];
+                let elementQuantity = cartRow.getElementsByClassName("cart-quantity-input-value")[0];
+                let price = parseFloat(elementPrice.innerText);
+                let quantity = elementQuantity.value;
+                subTotal = subTotal + (price * quantity)
+            }
+
+            document.getElementsByClassName("cart-subtotal-value")[0].innerText = "$" + subTotal
+        }
+
+        
+
+        /*
+        Since the subtotal function didn't work, I didn't try further to get the total function to work... 
+        This is only the beginning of the thought, that actually happened before thinking about the subtotal function.
+        So I ended up focussing on the subtotal first, and didn't get the opportunity to work more on the total function.  */
+
+        function updateTotal() {
+            let basketProducts = document.getElementsByClassName("cart")[0];
+            let cartRows = basketProducts.getElementsByClassName("cart-details");
+            let total = 0;
+            for (let i = 0; cartRows.length; i++) {
+                let cartRow = cartRows[i];
+                let elementPrice = cartRow.getElementsByClassName("cart-product-price")[0];
+                let elementQuantity = cartRow.getElementsByClassName("cart-quantity-input")[0];
+                let quantity = elementQuantity.valueAsNumber;
+                total = total + (elementPrice * quantity)
+            }
+
+            total = Math.round(total * 100) / 100 // this would be to make the numbers round in case I had prices with decimals, which I ended up changing
+            document.getElementsByClassName("cart-total-price")[0].innerText = "$" + total
+        }
+
+
+        /* You can insert these cart lines in the <div class="cart-single-product"> space in the shoppingCartPage() cart.innerHTML
+            to see how would the cart look like if I had managed to add rows while using the addToCart() function.
+            You'll also be able to see that the removeCartProduct() function, as well as the purchaseClicked() work:
+
+                <div class="cart-items cart-column">
+                        <span class="cart-item cart-column cart-row">Puzzle 1</span>
+                        <span class="cart-price cart-column cart-row">80</span>
+                        <input class="cart-quantity-input cart-column cart-row" type="number" value="1" min="0"></input>
+                        <span class="cart-subtotal cart-column cart-row"></span>
+                        <button id="button-remove" class="cart-remove cart-column cart-row" type="button" onclick="removeCartProduct()">REMOVE</button>
+                </div>
+                <div class="cart-items cart-column">
+                        <span class="cart-item cart-column cart-row">Puzzle 2</span>
+                        <span class="cart-price cart-column cart-row">85</span>
+                        <input class="cart-quantity-input cart-column cart-row" type="number" value="1" min="0"></input>
+                        <span class="cart-subtotal cart-column cart-row"></span>
+                        <button id="button-remove" class="cart-remove cart-column cart-row" type="button" onclick="removeCartProduct()">REMOVE</button>
+                </div>
+                </div>
+                
+        */
+
+    </script>
+</body>
+</html>
